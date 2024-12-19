@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Laundry Paneli</title>
+</head>
+<body>
+    <h1>Admin Laundry Paneli</h1>
+
+    <form method="POST">
+        <label for="email">Kullanıcı E-posta:</label>
+        <select name="email" id="email">
+            {% for user in users %}
+                <option value="{{ user.user_email }}">{{ user.user_email }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">4 Kilo Ekle</button>
+    </form>
+
+    <h2>Kullanıcı Kayıtları</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>E-posta</th>
+                <th>Kullanılan Kilo (kg)</th>
+                <th>Kalan Kilo (kg)</th>
+                <th>Son Güncelleme</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.user_email }}</td>
+                <td>{{ user.used_weight }}</td>
+                <td>{{ user.remaining_weight }}</td>
+                <td>{{ user.last_updated }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstifadəçilər</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e1e1e1;
+        }
+
+        form {
+            display: inline;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 8px;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .room-display {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #e9f7fe;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #007BFF;
+            max-width: 250px;
+            word-wrap: break-word;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>İstifadəçilər</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>E-poçt</th>
+            <th>Otaq Nömrəsi</th>
+            <th>Təsdiq Vəziyyəti</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <form action="{{ url_for('approve_user', user_id=user.id) }}" method="post" onsubmit="return displayRoomNumber(event, '{{ user.id }}')">
+                    <input type="text" name="room_number" placeholder="Otaq Nömrəsi" required>
+                    <input type="submit" value="Təsdiqlə">
+                    <input type="hidden" name="room_number_hidden" id="room_number_hidden_{{ user.id }}">
+                </form>
+                <span id="room_display_{{ user.id }}">{{ user.room_number if user.room_number else 'Otaq Nömrəsi Daxil Edilməyib' }}</span>
+            </td>
+            <td>{{ user.approved }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('admin_home') }}">Geri</a>
+
+    <script>
+        function displayRoomNumber(event, userId) {
+            var inputField = event.target.querySelector("input[name='room_number']");
+            var roomDisplay = document.getElementById("room_display_" + userId);
+            roomDisplay.innerHTML = inputField.value;
+            var hiddenInput = event.target.querySelector("input[name='room_number_hidden']");
+            hiddenInput.value = inputField.value;
+
+            return true; 
+        }
+    </script>
+</body>
+</html>

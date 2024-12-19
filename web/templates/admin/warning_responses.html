@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nəticələr</title> 
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #007BFF;
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 70%;
+}
+
+ul li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+}
+
+ul li span.warning-message {
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+ul li span.user-email {
+    font-style: italic;
+    color: #555;
+}
+
+ul li span.response {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: inline;
+    margin-right: 5px; 
+}
+
+ul li span.response-text {
+    font-size: 14px;
+    color: #333;
+    display: inline;
+}
+a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+</style>
+<h2>İstifadəçi Cavabları:</h2>
+<ul>
+    {% for response in responses %}
+    <li>
+        <span class="warning-message">Xəbərdarlıq:</span> {{ response.warning.message }} <br>
+        <span class="user-email">İstifadəçi:</span> {{ response.user.email }} <br>
+        <span class="response">Cavab:</span> 
+        <span class="response-text">{{ response.response }}</span>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('admin_home') }}">Geri</a>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İstifadəçi Paneli | Təsdiq</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        setTimeout(function() {
+            window.location.href = "{{ url_for('login') }}";
+        }, 5000);
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Qeydiyyat bitməsinə çox az qaldı..</h1>
+        <p>Admin Təsdiqi Gözlənilir.</p>
+        <p>Təsdiqləndiktən sonra avtomatik olaraq giriş səhifəsinə yönləndiriləcəksiniz.</p>
+        <a href="/">Əsas səhifəyə qayıt</a>
+    </div>
+</body>
+</html>

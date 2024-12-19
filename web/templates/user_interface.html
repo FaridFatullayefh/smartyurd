@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İstifadəçi Paneli</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF; 
+            margin-top: 20px;
+        }
+
+        nav {
+            background-color: #007BFF; 
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .canteen-info {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Xoşgəldiniz, {{ user.email }}</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('profile') }}">Profil</a></li>
+            <li><a href="{{ url_for('user_room_management') }}">Otaq İdarəsi</a></li>
+            <li><a href="{{ url_for('user_warnings') }}">Xəbərdarlıqlar</a></li>
+            <li><a href="{{ url_for('events') }}">Tədbirlər</a></li>
+            <li><a href="{{ url_for('logout') }}">Çıxış</a></li> 
+        </ul>
+    </nav>
+
+    
+</body>
+</html>

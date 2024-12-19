@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İstifadəçi Paneli | Tədbirlər</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; 
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            font-size: 2.5em; 
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 900px; 
+            margin: 0 auto;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        li:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
+        }
+
+        strong {
+            color: #007BFF;
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 10px; 
+        }
+
+        em {
+            color: #777;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .event-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        .image-container {
+            max-width: 100%; 
+            margin-top: 15px;
+            text-align: center; 
+        }
+
+        .image-container img {
+            max-width: 100%;  
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05); 
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tədbirlər</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong>{{ event.title }}</strong>
+                <div class="event-description">{{ event.description }}</div>
+                <em>{{ event.timestamp }}</em> 
+                {% if event.image_url %}
+                    <div class="image-container">
+                        <img src="{{ url_for('static', filename='uploads/' + event.image_url.split('/')[-1]) }}" >
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('user_interface') }}">Geri Qayıt</a>
+
+</body>
+</html>
